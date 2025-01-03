@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: test-podmonitor
+  namespace: shourde-pd-test
+  labels:
+    app: test-app
+spec:
+  selector:
+    matchLabels:
+      app: test-app
+  namespaceSelector:
+    matchNames:
+      - shourde-pd-test
+  podMetricsEndpoints:
+    - port: metrics
+      path: /metrics
+      interval: 30s
